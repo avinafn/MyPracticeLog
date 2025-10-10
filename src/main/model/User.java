@@ -17,7 +17,8 @@ public class User {
                 The user's name is set to name, and their log is set to the provided log
      */
     public User(String name, PracticeLog log) {
-        // TODO
+        this.name = name;
+        this.log = log;
     }
 
     public String getName() {
@@ -32,9 +33,7 @@ public class User {
         return log;
     }
 
-    public void setLog(PracticeLog log) {
-        this.log = log;
-    }
+   
 
     
 }

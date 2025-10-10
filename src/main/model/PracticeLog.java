@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -16,7 +17,7 @@ public class PracticeLog {
      *          the list is ready to have sessions added.
      */
     public PracticeLog() {
-        // TODO
+        this.practiceSession = new ArrayList<>();
     }
 
 
@@ -39,6 +40,8 @@ public class PracticeLog {
 
     }
 
+    
+
     /*
      * EFFECTS: Returns the number of PracticeSession objects currently stored
                 in this PracticeLog.
@@ -49,11 +52,17 @@ public class PracticeLog {
     }
 
     public List<PracticeSession> getPracticeSession() {
-        return practiceSession; //TODO
+        return practiceSession; 
     }
 
     public void setPracticeSession(List<PracticeSession> practiceSession) {
         //TODO
+    }
+
+    //method to return the pieces practice in the practice log
+    public List<String> getAllPieces() {
+        return new ArrayList<>(); // TODO
+
     }
 
 }
