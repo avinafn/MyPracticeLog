@@ -27,7 +27,7 @@ public class PracticeLog {
      * EFFECTS: Adds the session to the list of sessions
      */
     public void addSession(PracticeSession session) {
-        // TODO
+        practiceSession.add(session);
     }
 
 
@@ -36,18 +36,26 @@ public class PracticeLog {
                 in this PracticeLog. If there are no sessions, returns 0.
      */
     public int totalPracticeTime() {
-        return 0; // TODO
+        int total = 0;
+        for (PracticeSession practiceSession : this.practiceSession) {
+            total += practiceSession.getDuration();
+        }
+        return total;
 
     }
 
-    
 
     /*
      * EFFECTS: Returns the number of PracticeSession objects currently stored
                 in this PracticeLog.
      */
     public int sessionCount() {
-        return 0; // TODO
+        //int count = 0;
+        //for (PracticeSession practiceSession : this.practiceSession) {
+        //    count++;
+        //}
+        //return count;
+        return practiceSession.size();
 
     }
 
@@ -56,12 +64,17 @@ public class PracticeLog {
     }
 
     public void setPracticeSession(List<PracticeSession> practiceSession) {
-        //TODO
+        this.practiceSession = practiceSession;
     }
 
     //method to return the pieces practice in the practice log
     public List<String> getAllPieces() {
-        return new ArrayList<>(); // TODO
+        List<String> piecesList = new ArrayList<>();
+        for (PracticeSession practiceSession : this.practiceSession) {
+            piecesList.add(practiceSession.getPieces());
+
+        }
+        return piecesList;
 
     }
 

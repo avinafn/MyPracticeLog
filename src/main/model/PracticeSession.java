@@ -26,7 +26,7 @@ public class PracticeSession {
                 - this.focusArea is set to focusArea
      */
     public PracticeSession(String day, String instrument, String pieces, int duration,
-            String focusArea, List<String> comments, String categoty, String goal) {
+            String focusArea, List<String> comments, String category, String goal) {
 
         this.day = day;
         this.instrument = instrument;
@@ -34,7 +34,7 @@ public class PracticeSession {
         this.duration = duration;
         this.focusArea = focusArea;
         this.comments = comments;
-        this.category = categoty;
+        this.category = category;
         this.goal = goal;
 
     }
@@ -91,7 +91,7 @@ public class PracticeSession {
         return category;
     }
 
-    public void setCategory(String categoty) {
+    public void setCategory(String category) {
         this.category = category;
     }
 

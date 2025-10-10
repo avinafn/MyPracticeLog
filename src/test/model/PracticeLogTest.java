@@ -1,12 +1,13 @@
 package model;
 
-import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 
 public class PracticeLogTest {
 
@@ -34,20 +35,20 @@ public class PracticeLogTest {
     }
 
     @Test
-    void testConstructorLog() {
+    public void testConstructorLog() {
         assertEquals(0, practicelogtest.sessionCount());
     }
 
 
     @Test
-    void addSessionTest() {
+    public void addSessionTest() {
         assertEquals(0, practicelogtest.sessionCount());
         practicelogtest.addSession(session1);
         assertEquals(1, practicelogtest.sessionCount());
     }
 
     @Test
-    void totalPracticeTimeTest() {
+    public void totalPracticeTimeTest() {
         assertEquals(0, practicelogtest.totalPracticeTime());
         practicelogtest.addSession(session1);
         assertEquals(20, practicelogtest.totalPracticeTime());
@@ -58,7 +59,7 @@ public class PracticeLogTest {
     }
 
     @Test
-    void sessionCountTest() {
+    public void sessionCountTest() {
         assertEquals(0, practicelogtest.sessionCount());
         practicelogtest.addSession(session1);
         assertEquals(1, practicelogtest.sessionCount());
@@ -68,12 +69,12 @@ public class PracticeLogTest {
     }
 
     @Test
-    void getPracticeSessionTest() {
-        assertEquals(session1, practicelogtest.getPracticeSession());
+    public void getPracticeSessionTest() {
+        assertEquals(new ArrayList<>(), practicelogtest.getPracticeSession());
     }
 
     @Test
-    void setPracticeSessionTest() {
+    public void setPracticeSessionTest() {
         assertEquals(sessions, practicelogtest.getPracticeSession());
         sessions.add(session2);
         practicelogtest.setPracticeSession(sessions);
@@ -85,7 +86,7 @@ public class PracticeLogTest {
     }
 
     @Test
-    void getAllPiecesTest() {
+    public void getAllPiecesTest() {
         practicelogtest.addSession(session1);
         practicelogtest.addSession(session2);
         practicelogtest.addSession(session3);

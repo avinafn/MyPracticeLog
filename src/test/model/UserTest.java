@@ -1,9 +1,18 @@
 package model;
 
-import static org.junit.Assert.assertEquals;
+//import static org.junit.Assert.assertEquals;
 
-import org.junit.Test;
+//import org.junit.Test;
+//import org.junit.jupiter.api.BeforeEach;
+
+
+
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+
+
 
 public class UserTest {
     private User userTest;
@@ -16,7 +25,7 @@ public class UserTest {
     }
 
     @Test
-    void testConstructorUser() {
+    public void testConstructorUser() {
         assertEquals("Avin", userTest.getName());
         assertEquals(log, userTest.getLog());
     }

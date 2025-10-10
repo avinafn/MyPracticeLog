@@ -28,7 +28,7 @@ public class PracticeSessionTest {
         assertEquals("Fur Elise", practicesessiontest.getPieces());
         assertEquals(30, practicesessiontest.getDuration());
         assertEquals("Left hand", practicesessiontest.getFocusArea());
-        assertEquals("Focus on the second movement", practicesessiontest.getComment());
+        assertEquals(List.of("Focus on the second movement"), practicesessiontest.getComment());
         assertEquals("Classical", practicesessiontest.getCategory());
         assertEquals("memorize the notes", practicesessiontest.getGoal());
         
@@ -54,7 +54,7 @@ public class PracticeSessionTest {
 
     @Test
     void getInstrumentTest() {
-        assertEquals("piano", practicesessiontest.getInstrument());
+        assertEquals("Piano", practicesessiontest.getInstrument());
     }
 
     @Test
@@ -76,7 +76,7 @@ public class PracticeSessionTest {
 
     @Test
     void getDurationTest() {
-        assertEquals(40, practicesessiontest.getDuration());
+        assertEquals(30, practicesessiontest.getDuration());
     }
 
     @Test
@@ -87,7 +87,7 @@ public class PracticeSessionTest {
 
     @Test
     void getFocusAreaTest() {
-        assertEquals("left hand practice", practicesessiontest.getFocusArea());
+        assertEquals("Left hand", practicesessiontest.getFocusArea());
     }
 
     @Test
@@ -98,18 +98,18 @@ public class PracticeSessionTest {
 
     @Test
     void getCommentsTest() {
-        assertEquals("Good practice", practicesessiontest.getComment());
+        assertEquals(List.of("Focus on the second movement"), practicesessiontest.getComment());
     }
 
     @Test
     void setCommentsTest() {
         practicesessiontest.setComment(List.of("Waste of time!"));
-        assertEquals("Waste of time!", practicesessiontest.getComment());
+        assertEquals(List.of("Waste of time!"), practicesessiontest.getComment());
     }
 
     @Test
     void getCategoryTest() {
-        assertEquals("Classical", practicesessiontest.getComment());
+        assertEquals("Classical", practicesessiontest.getCategory());
     }
 
     @Test
