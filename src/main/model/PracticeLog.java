@@ -59,7 +59,7 @@ public class PracticeLog {
 
     }
 
-    public List<PracticeSession> getPracticeSession() {
+    public List<PracticeSession> getPracticeSession() {    
         return practiceSession; 
     }
 
@@ -76,6 +76,27 @@ public class PracticeLog {
         }
         return piecesList;
 
+    }
+
+    public String showPracticeSession(int i) {
+        String day = practiceSession.get(i).getDay();
+        String instrument = practiceSession.get(i).getInstrument();
+        String pieces = practiceSession.get(i).getPieces();
+        String focusArea = practiceSession.get(i).getFocusArea();
+        String comment = practiceSession.get(i).getComment();
+        int duration = practiceSession.get(i).getDuration();
+        String category = practiceSession.get(i).getCategory();
+        String goal = practiceSession.get(i).getGoal();
+
+        return "Practice " + Integer.toString(i + 1) + ":\n" 
+                + "day: " + day + "\n"
+                + "instrument: " + instrument + "\n"
+                + "pieces: " + pieces + "\n"
+                + "focus Area: " + focusArea + "\n"
+                + "comment: " + comment + "\n"
+                + "duration: " + duration + "\n"
+                + "category: " + category + "\n"
+                + "goal: " + goal + "\n";
     }
 
 }

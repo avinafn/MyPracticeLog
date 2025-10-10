@@ -6,7 +6,8 @@
 
 ## Main reasons someone would want to use a Music Practice Logger app (User Sotry):
 - As a user, I want to be able to add a PracticeSession to my PracticeLog, including details like the pieces practiced.
-- As a user, I want to be able to view statistics (extracted from the practice session) from my PracticeLog to see how my progress changes over time.
+-As a user, I want to view my practice sessions.
+- As a user, I want to be able to view statistics (extracted from the practice session, such as duration of practice) from my PracticeLog to see how my progress changes over time.
 - As a user, I want to be able to organize my repertoire into different categories (e.g., classical, jazz, exercises).
 - As a user, I want to be able to add comments and reflections after each practice session so I can remember what to focus on next time.
 - As a user, I want to be able to set specific goals for each practice session (e.g., "practice scales for 15 minutes" or "learn measures 10–20").

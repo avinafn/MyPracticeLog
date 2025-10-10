@@ -9,7 +9,7 @@ public class PracticeSession {
     private String pieces;
     private int duration;
     private String focusArea;
-    private List<String> comments;
+    private String comment;
     private String category;
     private String goal;
 
@@ -26,14 +26,14 @@ public class PracticeSession {
                 - this.focusArea is set to focusArea
      */
     public PracticeSession(String day, String instrument, String pieces, int duration,
-            String focusArea, List<String> comments, String category, String goal) {
+            String focusArea, String comment, String category, String goal) {
 
         this.day = day;
         this.instrument = instrument;
         this.pieces = pieces;
         this.duration = duration;
         this.focusArea = focusArea;
-        this.comments = comments;
+        this.comment = comment;
         this.category = category;
         this.goal = goal;
 
@@ -79,12 +79,12 @@ public class PracticeSession {
         this.focusArea = focusArea; 
     }
     
-    public List<String> getComment() {
-        return comments;
+    public String getComment() {
+        return comment;
     }
 
-    public void setComment(List<String> comment) {
-        this.comments = comment;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public String getCategory() {

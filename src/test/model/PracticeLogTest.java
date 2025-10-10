@@ -26,11 +26,11 @@ public class PracticeLogTest {
     void runBefore() {
         practicelogtest = new PracticeLog();
         session1 = new PracticeSession("Sat", "guitar", "Valse", 20, "chords", 
-        List.of("Focus on the next part in the upcoming practice"),"Romantic", "practice for 30 mins");
+        "Focus on the next part in the upcoming practice","Romantic", "practice for 30 mins");
         session2 = new PracticeSession("Sat", "guitar", "Nocturne", 0, "chords", 
-        List.of("still problem playing the chords"), "Romantic", "practice the first page");
+        "still problem playing the chords", "Romantic", "practice the first page");
         session3 = new PracticeSession("Sat", "guitar", "Persian Theme", 10, "chords",
-        List.of("Listen to the original song"), "Pop", "Record yourslef");
+        "Listen to the original song", "Pop", "Record yourslef");
         sessions = new ArrayList<>();
     }
 
@@ -71,6 +71,7 @@ public class PracticeLogTest {
     @Test
     public void getPracticeSessionTest() {
         assertEquals(new ArrayList<>(), practicelogtest.getPracticeSession());
+        
     }
 
     @Test
@@ -98,6 +99,24 @@ public class PracticeLogTest {
         expectedPieces.add("Persian Theme");
 
         assertEquals(expectedPieces, practicelogtest.getAllPieces());
+    }
+
+    @Test
+    public void showPracticeSessionTest() {
+        practicelogtest.addSession(session1);
+        String expected = "Practice 1:\n" 
+                + "day: Sat\n"
+                + "instrument: guitar\n"
+                + "pieces: Valse\n"
+                + "focus Area: chords\n"
+                + "comment: Focus on the next part in the upcoming practice\n"
+                + "duration: 20\n"
+                + "category: Romantic\n"
+                + "goal: practice for 30 mins\n";
+
+        String actual = practicelogtest.showPracticeSession(0);
+        assertEquals(expected, actual);
+        
     }
     
 
