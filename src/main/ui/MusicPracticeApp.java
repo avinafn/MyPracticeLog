@@ -14,12 +14,8 @@ public class MusicPracticeApp {
     private String firstOption;
     private String name;
     private String newSession;
-    private List<String> listComments;
-    private String commentEntered;
-    private static int sessionCounter = 1;
     private PracticeLog log;
     private PracticeSession newUserSession;
-    private int totalDuration;
     private int practiceTime;
 
 
@@ -41,7 +37,7 @@ public class MusicPracticeApp {
         
     }
 
-    // Construsts the scanner and practice log
+    // EFFECTS: Construsts the scanner and initializes the practiceLog
     public void init() {
         this.scanner = new Scanner(System.in);
         this.log = new PracticeLog();
@@ -68,7 +64,7 @@ public class MusicPracticeApp {
     }
 
 
-    // EFFECTS: Prints out the four initiall options a user have when they open the application
+    // EFFECTS: Prints out the six initiall options a user has when they open the application
     public void displayMenu() {
         System.out.println("A: Add a new user");
         System.out.println("L: View user log");
@@ -79,6 +75,7 @@ public class MusicPracticeApp {
         printDivider();
     }
 
+    // REQUIRES: One of these inputs are acceptable: A, L, T, N, Q
     // EFFECTS: Processes the user's input in the main menu
     public boolean optionHandler() {
         if (firstOption.equals("A")) {
@@ -107,7 +104,7 @@ public class MusicPracticeApp {
     }
     
 
-    // EFFECTS: handles the program when option "A" is entered and let the user make a new session
+    // EFFECTS: handles the program when option "A" is entered and lets the user make a new session
     public void optionA() {
         System.out.println("What is your name?");
         name = scanner.nextLine();
@@ -143,6 +140,7 @@ public class MusicPracticeApp {
         return log;
 
     }
+    
     // MODIFIES: this
     // EFFECTS: handles the program when option "T" is entered and displays the total duration of practice
 
@@ -151,9 +149,6 @@ public class MusicPracticeApp {
             System.out.println("You haven't practiced anything yet");
         } else {
             for (PracticeSession newUserSession : log.getPracticeSession()) {
-                //totalDuration = newUserSession.getDuration();
-                //totalDuration = 0;
-                //totalDuration += newUserSession.getDuration();
                 practiceTime = log.totalPracticeTime();               
             }
             System.out.println("Total practice time: " + practiceTime + " minutes");
@@ -163,7 +158,6 @@ public class MusicPracticeApp {
 
     
 
-    // this
     // EFFECTS: Gets different entries from the user to make a practice session
     public void sessionEntries() {
         System.out.println("What is the date of your practice?");
@@ -176,10 +170,8 @@ public class MusicPracticeApp {
         String categoryEntered = scanner.nextLine();
         System.out.println("What was the goal of this session?");
         String goalEntered = scanner.nextLine();
-        //System.out.println("What was the focus of this practice session on?");
-        //String focusAreaEntered = scanner.nextLine();
         System.out.println("Type down any commnets you have about your session");
-        commentEntered = scanner.nextLine();
+        String commentEntered = scanner.nextLine();
         System.out.println("How long have you practiced?(in minutes)");
         int durationEntered = durationMinutes();  
             
@@ -188,22 +180,21 @@ public class MusicPracticeApp {
                 durationEntered, commentEntered, categoryEntered, goalEntered);
         
         log.addSession(newUserSession);              
-
-        sessionCounter++; 
-
         
     }
 
+    
+    // EFFECTS: Returns a statement of invalid input to the user until they inter a vlaid integer as the input
     public int durationMinutes() {
         int durationEntered = 0;
         while (true) {
             if (scanner.hasNextInt()) {
                 durationEntered = scanner.nextInt();
-                scanner.nextLine(); // consume leftover newline
-                break; // exit the loop
+                scanner.nextLine(); 
+                break; 
             } else {
                 System.out.println("Please enter a valid number (in minutes): ");
-                scanner.nextLine(); // clear the invalid input
+                scanner.nextLine(); 
             }
         }
         return durationEntered;

@@ -19,13 +19,11 @@ public class PracticeLog {
      */
     public PracticeLog() {
         this.practiceSession = new ArrayList<>();
-        //this.total = 0;
     }
 
 
     /*
      * REQUIRES: Session is not null
-     * MODIFIES: this
      * EFFECTS: Adds the session to the list of sessions
      */
     public void addSession(PracticeSession session) {
@@ -62,6 +60,7 @@ public class PracticeLog {
 
     }
 
+    // EFFECTS: Returns the pointer to the list of practice session (does not get every element in the list)
     public List<PracticeSession> getPracticeSession() {    
         return practiceSession; 
     }
@@ -70,7 +69,7 @@ public class PracticeLog {
         this.practiceSession = practiceSession;
     }
 
-    //method to return the pieces practice in the practice log
+    //EFFECTS: Returns the pieces practice in the practice log
     public List<String> getAllPieces() {
         List<String> piecesList = new ArrayList<>();
         for (PracticeSession practiceSession : this.practiceSession) {
@@ -81,6 +80,7 @@ public class PracticeLog {
 
     }
 
+    // EFFECTS: Returns and shows each element in a session 
     public String showPracticeSession(int i) {
         String day = practiceSession.get(i).getDay();
         String instrument = practiceSession.get(i).getInstrument();
