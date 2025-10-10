@@ -8,7 +8,7 @@ public class PracticeSession {
     private String instrument;
     private String pieces;
     private int duration;
-    private String focusArea;
+    //private String focusArea;
     private String comment;
     private String category;
     private String goal;
@@ -26,13 +26,13 @@ public class PracticeSession {
                 - this.focusArea is set to focusArea
      */
     public PracticeSession(String day, String instrument, String pieces, int duration,
-            String focusArea, String comment, String category, String goal) {
+            String comment, String category, String goal) {
 
         this.day = day;
         this.instrument = instrument;
         this.pieces = pieces;
         this.duration = duration;
-        this.focusArea = focusArea;
+        //this.focusArea = focusArea;
         this.comment = comment;
         this.category = category;
         this.goal = goal;
@@ -71,13 +71,13 @@ public class PracticeSession {
         this.duration = duration; 
     }
 
-    public String getFocusArea() {
-        return focusArea; 
-    }
+    //public String getFocusArea() {
+    //    return focusArea; 
+    //}
 
-    public void setFocusArea(String focusArea) {
-        this.focusArea = focusArea; 
-    }
+    //public void setFocusArea(String focusArea) {
+    //    this.focusArea = focusArea; 
+    //}
     
     public String getComment() {
         return comment;

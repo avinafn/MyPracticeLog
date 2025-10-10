@@ -20,6 +20,7 @@ public class MusicPracticeApp {
     private PracticeLog log;
     private PracticeSession newUserSession;
     private int totalDuration;
+    private int practiceTime;
 
 
     
@@ -72,6 +73,7 @@ public class MusicPracticeApp {
         System.out.println("A: Add a new user");
         System.out.println("L: View user log");
         System.out.println("T: Total practice time");
+        System.out.println("N: Number of sessions");
         System.out.println("Choose your option");
         System.out.println("Q: Quit");
         printDivider();
@@ -87,14 +89,19 @@ public class MusicPracticeApp {
             optionL();
             printDivider();
             
+        } else if (firstOption.equals("T")) {
+            optionT();
+            printDivider();
+
+        } else if (firstOption.equals("N")) {
+            System.out.println("You have " + log.sessionCount() + " session(s) so far");
+            log.sessionCount();
+            printDivider();
 
         } else if (firstOption.equals("Q")) {
             System.out.println("Goodbye! Until your next session:)");
             return false;
-        
-        } else if (firstOption.equals("T")) {
-            optionT();
-            printDivider();
+
         }
         return true;
     }
@@ -105,7 +112,7 @@ public class MusicPracticeApp {
         System.out.println("What is your name?");
         name = scanner.nextLine();
         new User(name, log);
-        System.out.println("Hello " + name + " press M to Make a new practice session");
+        System.out.println("Hello " + name.toUpperCase() + " press M to Make a new practice session");
         
 
         do {
@@ -129,6 +136,7 @@ public class MusicPracticeApp {
             System.out.println("No practice sessions found!");
         } else {
             for (int i = 0; i < log.getPracticeSession().size(); i++) {
+                System.out.println("This is " + name.toUpperCase() + "'s practice session");
                 System.out.println(log.showPracticeSession(i));
             } 
         }
@@ -139,18 +147,21 @@ public class MusicPracticeApp {
     // EFFECTS: handles the program when option "T" is entered and displays the total duration of practice
 
     public int optionT() {
-        totalDuration = newUserSession.getDuration();
-        totalDuration = 0;
-
-        for (PracticeSession newUserSession : log.getPracticeSession()) {
-            totalDuration += newUserSession.getDuration();
-
-        }
-        System.out.println("Total practice time: " + totalDuration + " minutes");
-        
-
-        return totalDuration;
+        if (log.getPracticeSession().isEmpty()) {
+            System.out.println("You haven't practiced anything yet");
+        } else {
+            for (PracticeSession newUserSession : log.getPracticeSession()) {
+                //totalDuration = newUserSession.getDuration();
+                //totalDuration = 0;
+                //totalDuration += newUserSession.getDuration();
+                practiceTime = log.totalPracticeTime();               
+            }
+            System.out.println("Total practice time: " + practiceTime + " minutes");
+        }        
+        return practiceTime;
     }
+
+    
 
     // this
     // EFFECTS: Gets different entries from the user to make a practice session
@@ -165,24 +176,38 @@ public class MusicPracticeApp {
         String categoryEntered = scanner.nextLine();
         System.out.println("What was the goal of this session?");
         String goalEntered = scanner.nextLine();
-        System.out.println("What was the focus of this practice session on?");
-        String focusAreaEntered = scanner.nextLine();
-        System.out.println("Type dow any commnets you have about your session");
+        //System.out.println("What was the focus of this practice session on?");
+        //String focusAreaEntered = scanner.nextLine();
+        System.out.println("Type down any commnets you have about your session");
         commentEntered = scanner.nextLine();
         System.out.println("How long have you practiced?(in minutes)");
-        int durationEntered = scanner.nextInt();
-        scanner.nextLine();
-        
-        
+        int durationEntered = durationMinutes();  
+            
 
         newUserSession = new PracticeSession(dateEntered, instrumentEntered, pieceEntered, 
-                durationEntered, focusAreaEntered, commentEntered, categoryEntered, goalEntered);
+                durationEntered, commentEntered, categoryEntered, goalEntered);
         
         log.addSession(newUserSession);              
 
         sessionCounter++; 
 
         
+    }
+
+    public int durationMinutes() {
+        int durationEntered = 0;
+        while (true) {
+            if (scanner.hasNextInt()) {
+                durationEntered = scanner.nextInt();
+                scanner.nextLine(); // consume leftover newline
+                break; // exit the loop
+            } else {
+                System.out.println("Please enter a valid number (in minutes): ");
+                scanner.nextLine(); // clear the invalid input
+            }
+        }
+        return durationEntered;
+            
     }
 
 

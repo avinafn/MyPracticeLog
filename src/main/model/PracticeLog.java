@@ -11,6 +11,7 @@ import java.util.List;
 public class PracticeLog {
 
     private List<PracticeSession> practiceSession;
+    //private int total;
 
     /*
      * EFFECTS: Initializes this PracticeLog with an empty list of PracticeSession; 
@@ -18,6 +19,7 @@ public class PracticeLog {
      */
     public PracticeLog() {
         this.practiceSession = new ArrayList<>();
+        //this.total = 0;
     }
 
 
@@ -36,8 +38,9 @@ public class PracticeLog {
                 in this PracticeLog. If there are no sessions, returns 0.
      */
     public int totalPracticeTime() {
-        int total = 0;
+        int total = 0; 
         for (PracticeSession practiceSession : this.practiceSession) {
+            
             total += practiceSession.getDuration();
         }
         return total;
@@ -82,7 +85,7 @@ public class PracticeLog {
         String day = practiceSession.get(i).getDay();
         String instrument = practiceSession.get(i).getInstrument();
         String pieces = practiceSession.get(i).getPieces();
-        String focusArea = practiceSession.get(i).getFocusArea();
+        //String focusArea = practiceSession.get(i).getFocusArea();
         String comment = practiceSession.get(i).getComment();
         int duration = practiceSession.get(i).getDuration();
         String category = practiceSession.get(i).getCategory();
@@ -92,7 +95,7 @@ public class PracticeLog {
                 + "day: " + day + "\n"
                 + "instrument: " + instrument + "\n"
                 + "pieces: " + pieces + "\n"
-                + "focus Area: " + focusArea + "\n"
+                //+ "focus Area: " + focusArea + "\n"
                 + "comment: " + comment + "\n"
                 + "duration: " + duration + "\n"
                 + "category: " + category + "\n"

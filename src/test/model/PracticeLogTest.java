@@ -25,11 +25,11 @@ public class PracticeLogTest {
     @BeforeEach
     void runBefore() {
         practicelogtest = new PracticeLog();
-        session1 = new PracticeSession("Sat", "guitar", "Valse", 20, "chords", 
+        session1 = new PracticeSession("Sat", "guitar", "Valse", 20, 
         "Focus on the next part in the upcoming practice","Romantic", "practice for 30 mins");
-        session2 = new PracticeSession("Sat", "guitar", "Nocturne", 0, "chords", 
+        session2 = new PracticeSession("Sat", "guitar", "Nocturne", 0, 
         "still problem playing the chords", "Romantic", "practice the first page");
-        session3 = new PracticeSession("Sat", "guitar", "Persian Theme", 10, "chords",
+        session3 = new PracticeSession("Sat", "guitar", "Persian Theme", 10, 
         "Listen to the original song", "Pop", "Record yourslef");
         sessions = new ArrayList<>();
     }
@@ -37,6 +37,9 @@ public class PracticeLogTest {
     @Test
     public void testConstructorLog() {
         assertEquals(0, practicelogtest.sessionCount());
+        practicelogtest.addSession(session3);
+        assertEquals(1, practicelogtest.sessionCount());
+
     }
 
 
@@ -108,7 +111,7 @@ public class PracticeLogTest {
                 + "day: Sat\n"
                 + "instrument: guitar\n"
                 + "pieces: Valse\n"
-                + "focus Area: chords\n"
+                //+ "focus Area: chords\n"
                 + "comment: Focus on the next part in the upcoming practice\n"
                 + "duration: 20\n"
                 + "category: Romantic\n"

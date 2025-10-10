@@ -16,7 +16,7 @@ public class PracticeSessionTest {
     
     @BeforeEach
     void runBefore() {
-        practicesessiontest = new PracticeSession("Monday", "Piano", "Fur Elise", 30, "Left hand",
+        practicesessiontest = new PracticeSession("Monday", "Piano", "Fur Elise", 30, 
          "Focus on the second movement", "Classical", "memorize the notes");
 
     }
@@ -27,7 +27,7 @@ public class PracticeSessionTest {
         assertEquals("Piano", practicesessiontest.getInstrument());
         assertEquals("Fur Elise", practicesessiontest.getPieces());
         assertEquals(30, practicesessiontest.getDuration());
-        assertEquals("Left hand", practicesessiontest.getFocusArea());
+        //assertEquals("Left hand", practicesessiontest.getFocusArea());
         assertEquals("Focus on the second movement", practicesessiontest.getComment());
         assertEquals("Classical", practicesessiontest.getCategory());
         assertEquals("memorize the notes", practicesessiontest.getGoal());
@@ -85,16 +85,16 @@ public class PracticeSessionTest {
         assertEquals(10, practicesessiontest.getDuration());
     }
 
-    @Test
-    void getFocusAreaTest() {
-        assertEquals("Left hand", practicesessiontest.getFocusArea());
-    }
+    //@Test
+    //void getFocusAreaTest() {
+    //    assertEquals("Left hand", practicesessiontest.getFocusArea());
+    //}
 
-    @Test
-    void setFocusAreaTest() {
-        practicesessiontest.setFocusArea("Solfege");
-        assertEquals("Solfege", practicesessiontest.getFocusArea());
-    }
+    //@Test
+    //void setFocusAreaTest() {
+    //    practicesessiontest.setFocusArea("Solfege");
+    //    assertEquals("Solfege", practicesessiontest.getFocusArea());
+    //}
 
     @Test
     void getCommentsTest() {
