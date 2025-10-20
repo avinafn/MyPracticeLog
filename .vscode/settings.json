@@ -4,7 +4,7 @@
         "src/test"
     ],
     "java.project.outputPath": "bin",
-    "java.project.referencedLibraries": [
+    "lib/**/*.jar": [
         "/Users/avinallafchian/Desktop/UBC year 2/CPSC 210/project-h0c4w/lib/junit-platform-console-standalone-1.10.2.jar"
     ],
     "java.checkstyle.configuration": "${workspaceFolder}/checkstyle.xml",

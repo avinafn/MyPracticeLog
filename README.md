@@ -11,5 +11,7 @@
 - As a user, I want to be able to organize my repertoire into different categories (e.g., classical, jazz, exercises).
 - As a user, I want to be able to add comments and reflections after each practice session so I can remember what to focus on next time.
 - As a user, I want to be able to set specific goals for each practice session (e.g., "practice scales for 15 minutes" or "learn measures 10–20").
+- As a user, when I select the quit option from the application menu, I want to be reminded to save my practice session to file and have the option to do so or not.
+- As a user, I want to be able to be able to load my practice log list from file (if I so choose) and resume exactly where I left off at some earlier time.
 
 

@@ -6,9 +6,13 @@ import java.util.Scanner;
 import model.PracticeLog;
 import model.PracticeSession;
 import model.User;
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
+
+
 
 // A music application that would allow users to make sessions and enter the details of their practice to have 
 // a record of it.
+@ExcludeFromJacocoGeneratedReport
 public class MusicPracticeApp {
     private Scanner scanner;
     private String firstOption;
