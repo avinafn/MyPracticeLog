@@ -1,11 +1,14 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 /*
  * Represents a user (musician or student) who logs practice sessions.
    Each User has a name and a PracticeLog that records all their
    PracticeSession entries.
  */
-public class User {
+public class User implements Writable {
 
     private String name;
     private PracticeLog log;
@@ -31,6 +34,13 @@ public class User {
 
     public PracticeLog getLog() {
         return log;
+    }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("practiceSessions", log.toJson()); 
+        return json;
     }
 
    

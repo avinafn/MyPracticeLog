@@ -1,14 +1,20 @@
 package model;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import persistence.Writable;
 
 /*
  * Represents a log of practice sessions containing a list of sessions practiced by a user
    Keeps track of all PracticeSession entries and allows access to
    information such as total practice time and number of sessions
  */
-public class PracticeLog {
+public class PracticeLog implements Writable {
 
     private List<PracticeSession> practiceSession;
     //private int total;
@@ -100,6 +106,24 @@ public class PracticeLog {
                 + "duration: " + duration + "\n"
                 + "category: " + category + "\n"
                 + "goal: " + goal + "\n";
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("practiceSessions", practiceSessionsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray practiceSessionsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (PracticeSession p : practiceSession) {
+            jsonArray.put(p.toJson());
+        }
+
+        return jsonArray;
     }
 
 }

@@ -2,8 +2,12 @@ package model;
 
 import java.util.List;
 
+import org.json.JSONObject;
+
+import persistence.Writable;
+
 // A class representing a practice session having a date, instrument, pieces, duration, focusarea and comments
-public class PracticeSession {
+public class PracticeSession implements Writable {
     private String day;
     private String instrument;
     private String pieces;
@@ -101,6 +105,25 @@ public class PracticeSession {
 
     public void setGoal(String goal) {
         this.goal = goal;
+    }
+
+    // EFFECTS: returns string representation of this practiceSession
+    public String toString() {
+        return day + ": " + instrument + ": " + pieces + ": " + duration + ":" 
+            + comment + ": " + category + ": " + goal + ": ";
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("day", day);
+        json.put("day", instrument);
+        json.put("day", pieces);
+        json.put("day", duration);
+        json.put("day", comment);
+        json.put("day", category);
+        json.put("day", goal);
+        return json;
     }
 
 }
