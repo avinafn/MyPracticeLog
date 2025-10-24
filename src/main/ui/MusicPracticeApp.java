@@ -18,7 +18,9 @@ import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 // a record of it.
 @ExcludeFromJacocoGeneratedReport
 public class MusicPracticeApp {
-    private static final String JSON_STORE = "./data/practiceLog.json";
+    private static final String JSON_STORE = "./data/practiceLog.json"; // TODO
+    
+
     private Scanner scanner;
     private String firstOption;
     private String name;
@@ -80,7 +82,7 @@ public class MusicPracticeApp {
 
     // EFFECTS: Prints out the six initiall options a user has when they open the application
     public void displayMenu() {
-        System.out.println("A: Add a new user");
+        System.out.println("A: Add a new session");
         System.out.println("L: View user log");
         System.out.println("T: Total practice time");
         System.out.println("N: Number of sessions");
@@ -125,12 +127,13 @@ public class MusicPracticeApp {
     // EFFECTS: saves the workroom to file
     private void savePracticeLog() {
         try {
+            JsonWriter writer = new JsonWriter(JSON_STORE); //TODO
             jsonWriter.open();
             jsonWriter.writeUser(user);
             jsonWriter.close();
-            System.out.println("Saved " + " to " + JSON_STORE);
+            System.out.println("Saved " + " to " + JSON_STORE); //TODO:JSON_STORE
         } catch (FileNotFoundException e) {
-            System.out.println("Unable to write to file: " + JSON_STORE);
+            System.out.println("Unable to write to file: " + JSON_STORE); //TODO:JSON_STORE
         }
     }
 
@@ -141,7 +144,7 @@ public class MusicPracticeApp {
             user = jsonReader.readUser();
             log = user.getLog();
             name = user.getName();
-            System.out.println("Loaded " +  user.getName() + " from " + JSON_STORE);
+            System.out.println("Loaded " +  user.getName() + " from " + JSON_STORE); // TODO:JSON_STORE
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
@@ -152,6 +155,7 @@ public class MusicPracticeApp {
     public void optionA() {
         System.out.println("What is your name?");
         name = scanner.nextLine();
+        log = new PracticeLog(); // TODO
         user = new User(name, log);
         System.out.println("Hello " + name.toUpperCase() + " press M to Make a new practice session");
         

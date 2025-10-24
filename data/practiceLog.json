@@ -1,23 +1,12 @@
 {
-    "practiceSessions": [
-        {
-            "pieces": "k",
-            "duration": 90,
-            "goal": "k",
-            "instrument": "k",
-            "comment": "k",
-            "category": "k",
-            "day": "k"
-        },
-        {
-            "pieces": "o",
-            "duration": 90,
-            "goal": "j",
-            "instrument": "i",
-            "comment": "j",
-            "category": "u",
-            "day": "k"
-        }
-    ],
-    "name": "mamad"
+    "practiceSessions": [{
+        "pieces": "a",
+        "duration": 90,
+        "goal": "a",
+        "instrument": "a",
+        "comment": "a",
+        "category": "a",
+        "day": "a"
+    }],
+    "name": "a"
 }

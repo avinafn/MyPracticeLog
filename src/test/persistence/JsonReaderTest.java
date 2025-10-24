@@ -1,5 +1,9 @@
 package persistence;
 
+// Code adapted from: University of British Columbia CPSC 210 JSON Serialization Demo
+// Source: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+// Author: Paul Carter
+
 import model.PracticeLog;
 import model.PracticeSession;
 import model.User;
