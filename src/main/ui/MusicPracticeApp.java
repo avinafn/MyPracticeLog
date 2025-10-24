@@ -1,11 +1,15 @@
 package ui;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import model.PracticeLog;
 import model.PracticeSession;
 import model.User;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 
 
@@ -14,6 +18,7 @@ import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 // a record of it.
 @ExcludeFromJacocoGeneratedReport
 public class MusicPracticeApp {
+    private static final String JSON_STORE = "./data/practiceLog.json";
     private Scanner scanner;
     private String firstOption;
     private String name;
@@ -21,6 +26,9 @@ public class MusicPracticeApp {
     private PracticeLog log;
     private PracticeSession newUserSession;
     private int practiceTime;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+    private User user;
 
 
     
@@ -45,6 +53,8 @@ public class MusicPracticeApp {
     public void init() {
         this.scanner = new Scanner(System.in);
         this.log = new PracticeLog();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
     }
 
 
@@ -75,6 +85,8 @@ public class MusicPracticeApp {
         System.out.println("T: Total practice time");
         System.out.println("N: Number of sessions");
         System.out.println("Choose your option");
+        System.out.println("S: Save");
+        System.out.println("O: Load");
         System.out.println("Q: Quit");
         printDivider();
     }
@@ -103,8 +115,35 @@ public class MusicPracticeApp {
             System.out.println("Goodbye! Until your next session:)");
             return false;
 
+        } else if (firstOption.equals("S")) {
+            savePracticeLog();
+        } else if (firstOption.equals("O")) {
+            loadPracticelog();
         }
         return true;
+    }
+
+    // EFFECTS: saves the workroom to file
+    private void savePracticeLog() {
+        try {
+            jsonWriter.open();
+            jsonWriter.writeUser(user);
+            jsonWriter.close();
+            System.out.println("Saved " + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadPracticelog() {
+        try {
+            user = jsonReader.readUser();
+            System.out.println("Loaded " + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
     
 
@@ -112,7 +151,7 @@ public class MusicPracticeApp {
     public void optionA() {
         System.out.println("What is your name?");
         name = scanner.nextLine();
-        new User(name, log);
+        user = new User(name, log);
         System.out.println("Hello " + name.toUpperCase() + " press M to Make a new practice session");
         
 

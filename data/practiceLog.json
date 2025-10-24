@@ -1,0 +1,23 @@
+{
+  "practiceSessions": [
+    {
+      "day": "2025-10-22",
+      "instrument": "piano",
+      "pieces": "Fur Elise",
+      "duration": 30,
+      "comment": "focused on left hand",
+      "category": "Classical",
+      "goal": "improve fingering"
+    },
+    {
+      "day": "2025-10-20",
+      "instrument": "violin",
+      "pieces": "Moonlight",
+      "duration": 45,
+      "comment": "slow practice",
+      "category": "Classical",
+      "goal": "prepare recital"
+    }
+  ],
+  "name" : "Avin"
+}

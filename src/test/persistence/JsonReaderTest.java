@@ -69,6 +69,19 @@ public class JsonReaderTest extends JsonTest {
         }
     }
 
+    @Test
+    void testReaderUser2() {
+        JsonReader reader = new JsonReader("./data/testReaderGeneralPracticeLog.json");
+        try {
+            User user = reader.readUser();
+            assertEquals("Avin", user.getName());
+            PracticeLog log = user.getLog();
+            assertEquals(2, log.sessionCount());
+        } catch (IOException e) {
+            fail("Couldn't read from file");
+        }
+    }
+
 
 
 }

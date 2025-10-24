@@ -1,0 +1,20 @@
+{"practiceSessions": [
+    {
+        "pieces": "Valse",
+        "duration": 90,
+        "goal": "improve left hand",
+        "instrument": "piano",
+        "comment": "technique",
+        "category": "Romantic",
+        "day": "2025-10-18"
+    },
+    {
+        "pieces": "2-part invension",
+        "duration": 120,
+        "goal": "n/a",
+        "instrument": "guitar",
+        "comment": "not a good practice",
+        "category": "Baroque",
+        "day": "2025-10-19"
+    }
+]}

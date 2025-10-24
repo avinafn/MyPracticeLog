@@ -7,6 +7,8 @@ package persistence;
 
 
 import model.PracticeLog;
+import model.User;
+
 import org.json.JSONObject;
 
 
@@ -34,6 +36,13 @@ public class JsonWriter {
     // EFFECTS: writes JSON representation of workroom to file
     public void write(PracticeLog pl) {
         JSONObject json = pl.toJson(); 
+        saveToFile(json.toString(TAB));
+    }
+
+    // MODIFIES: this
+    // EFFECTS: writes JSON representation of User (and their PracticeLog) to file
+    public void writeUser(User user) {
+        JSONObject json = user.toJson();
         saveToFile(json.toString(TAB));
     }
 

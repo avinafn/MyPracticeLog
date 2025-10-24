@@ -117,12 +117,12 @@ public class PracticeSession implements Writable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("day", day);
-        json.put("day", instrument);
-        json.put("day", pieces);
-        json.put("day", duration);
-        json.put("day", comment);
-        json.put("day", category);
-        json.put("day", goal);
+        json.put("instrument", instrument);
+        json.put("pieces", pieces);
+        json.put("duration", duration);
+        json.put("comment", comment);
+        json.put("category", category);
+        json.put("goal", goal);
         return json;
     }
 
