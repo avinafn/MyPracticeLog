@@ -27,7 +27,7 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads workroom from file and returns it;
+    // EFFECTS: reads practiceLog from file and returns it;
     // throws IOException if an error occurs reading data from file
     public PracticeLog read() throws IOException {
         String jsonData = readFile(source);
@@ -55,7 +55,7 @@ public class JsonReader {
     }
 
 
-    // EFFECTS: parses PracticeLog from JSON object and returns it
+    // EFFECTS: parses practiceLog from JSON object and returns it
     private PracticeLog parsePracticeLog(JSONObject jsonObject) {
         PracticeLog pl = new PracticeLog();
         addSessions(pl, jsonObject);
@@ -63,7 +63,7 @@ public class JsonReader {
     }
 
       // MODIFIES: pl
-    // EFFECTS: parses Practice Sessions from JSON object and adds them to PracticeLog
+    // EFFECTS: parses practiceSessions from JSON object and adds them to practiceLog
     private void addSessions(PracticeLog pl, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("practiceSessions");
         for (Object json : jsonArray) {
@@ -73,7 +73,7 @@ public class JsonReader {
     }
 
     // MODIFIES: pl
-    // EFFECTS: parses Practice session from JSON object and adds it to PracticeLog
+    // EFFECTS: parses practiceSession from JSON object and adds it to practiceLog
     private void addSession(PracticeLog pl, JSONObject jsonObject) {
         String day = jsonObject.getString("day");
         String instrument = jsonObject.getString("instrument");

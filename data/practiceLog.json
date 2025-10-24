@@ -1,12 +1,32 @@
 {
-    "practiceSessions": [{
-        "pieces": "a",
-        "duration": 90,
-        "goal": "a",
-        "instrument": "a",
-        "comment": "a",
-        "category": "a",
-        "day": "a"
-    }],
-    "name": "a"
+    "practiceSessions": [
+        {
+            "pieces": "a",
+            "duration": 90,
+            "goal": "a",
+            "instrument": "a",
+            "comment": "a",
+            "category": "a",
+            "day": "a"
+        },
+        {
+            "pieces": "v",
+            "duration": 20,
+            "goal": "v",
+            "instrument": "v",
+            "comment": "v",
+            "category": "v",
+            "day": "v"
+        },
+        {
+            "pieces": "r",
+            "duration": 80,
+            "goal": "r",
+            "instrument": "r",
+            "comment": "r",
+            "category": "r",
+            "day": "r"
+        }
+    ],
+    "name": "r"
 }

@@ -23,6 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExcludeFromJacocoGeneratedReport
 public class JsonWriterTest extends JsonTest {
 
+    // Tests whether the method writes in an invalid path
     @Test
     void testWriterInvalidFile() {
         try {
@@ -34,6 +35,7 @@ public class JsonWriterTest extends JsonTest {
         }
     }
 
+    // Test whether the method creates a json file but adds nothing to the practice log
     @Test
     void testWriterEmptyPracticeLog() {
         try {
@@ -51,6 +53,7 @@ public class JsonWriterTest extends JsonTest {
         }
     }
 
+    // Test whether the method creates a json file and adds to practiceSessions to the log
     @Test
     void testWriterGeneralPracticeLog() {
         try {
@@ -78,6 +81,7 @@ public class JsonWriterTest extends JsonTest {
         }
     }
 
+    // Tests whether the method adds the user to the json file but with an empty log
     @Test
     void testWriteUserEmptyLog() {
         try {

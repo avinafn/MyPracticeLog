@@ -20,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExcludeFromJacocoGeneratedReport
 public class JsonReaderTest extends JsonTest {
 
+    // Tests whether the exception catches the invalid pathway
     @Test
     void testReaderNonExistentFile() {
         JsonReader reader = new JsonReader("./data/noSuchFile.json");
@@ -31,6 +32,7 @@ public class JsonReaderTest extends JsonTest {
         }
     }
 
+    // Tests whether the method reads and empty file
     @Test
     void testReaderEmptyPracticeLog() {
         JsonReader reader = new JsonReader("./data/testReaderEmptyPracticeLog.json");
@@ -42,6 +44,7 @@ public class JsonReaderTest extends JsonTest {
         }
     }
 
+    // Tests whether the method reads a general file (with 2 elements added to the list in this case)
     @Test
     void testReaderGeneralPracticeLog() {
         JsonReader reader = new JsonReader("./data/testReaderGeneralPracticeLog.json");
@@ -60,6 +63,7 @@ public class JsonReaderTest extends JsonTest {
         }
     }
 
+    // Tests whether it reads the User class with an empty log
     @Test
     void testReaderUser() {
         JsonReader reader = new JsonReader("./data/testReaderEmptyPracticeLog.json");
@@ -73,6 +77,7 @@ public class JsonReaderTest extends JsonTest {
         }
     }
 
+    // Tests whether it reads the User class with a log with 2 practiceSessions
     @Test
     void testReaderUser2() {
         JsonReader reader = new JsonReader("./data/testReaderGeneralPracticeLog.json");

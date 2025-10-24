@@ -155,8 +155,13 @@ public class MusicPracticeApp {
     public void optionA() {
         System.out.println("What is your name?");
         name = scanner.nextLine();
-        log = new PracticeLog(); // TODO
-        user = new User(name, log);
+        if (user == null) {
+            log = new PracticeLog(); // TODO
+            user = new User(name, log);
+        } else {
+            user.setName(name);
+        }
+        
         System.out.println("Hello " + name.toUpperCase() + " press M to Make a new practice session");
         
 
