@@ -84,7 +84,6 @@ public class MusicPracticeApp {
         System.out.println("L: View user log");
         System.out.println("T: Total practice time");
         System.out.println("N: Number of sessions");
-        System.out.println("Choose your option");
         System.out.println("S: Save");
         System.out.println("O: Load");
         System.out.println("Q: Quit");
@@ -140,7 +139,9 @@ public class MusicPracticeApp {
     private void loadPracticelog() {
         try {
             user = jsonReader.readUser();
-            System.out.println("Loaded " + " from " + JSON_STORE);
+            log = user.getLog();
+            name = user.getName();
+            System.out.println("Loaded " +  user.getName() + " from " + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }

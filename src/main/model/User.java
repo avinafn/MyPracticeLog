@@ -39,10 +39,11 @@ public class User implements Writable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", name);
-        json.put("practiceSessions", log.toJson()); 
+        //json.put("practiceLog", log.toJson()); 
+        JSONObject logJson = log.toJson();
+        json.put("practiceSessions", logJson.getJSONArray("practiceSessions"));
         return json;
     }
-
    
 
     
