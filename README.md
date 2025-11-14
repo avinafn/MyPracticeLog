@@ -14,4 +14,12 @@
 - As a user, when I select the quit option from the application menu, I want to be reminded to save my practice session to file and have the option to do so or not.
 - As a user, I want to be able to be able to load my practice log list from file (if I so choose) and resume exactly where I left off at some earlier time.
 
+## Instructions for End User
+- You can view the panel that displays the Xs that have already been added to the Y by clicking on the "view" button.
+- You can generate the first required action related to the user story "adding multiple Xs to a Y" by clicking on the "Add a new user session" button.
+- You can generate the second required action related to the user story "viewing the added Xs to a Y" by clicking the "View user log" button.
+- You can locate my visual component by...-> to be completed
+- You can save the state of my application by clicking the "Save" button.
+- You can reload the state of my application by clicking the "load" button.
+
 
