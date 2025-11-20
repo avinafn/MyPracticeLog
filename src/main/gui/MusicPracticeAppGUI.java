@@ -64,13 +64,13 @@ public class MusicPracticeAppGUI extends JFrame {
         topBar.add(saveButton);
         topBar.add(loadButton);
         add(topBar, BorderLayout.NORTH);
-        topBar.setBackground(new Color(230, 230, 230));
+        topBar.setBackground(new Color(255, 128, 128));
         topBar.setBorder(new EmptyBorder(10, 20, 10, 20));
 
         // Card panel setup
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
-        cardPanel.setBackground(new Color(245, 245, 245));
+        cardPanel.setBackground(new Color(204, 255, 255));
 
         sessionListPanel = new SessionListPanel(practiceLog);
         addSessionPanel = new AddSessionPanel(practiceLog, sessionListPanel, cardLayout, cardPanel);

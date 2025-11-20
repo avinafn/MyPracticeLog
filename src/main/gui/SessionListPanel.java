@@ -25,7 +25,7 @@ public class SessionListPanel extends JPanel {
 
     public SessionListPanel(PracticeLog log) {
 
-        setBackground(new Color(245, 245, 245));
+        setBackground(new Color(204, 204, 255));
         setOpaque(true);
 
         this.log = log;
@@ -40,7 +40,7 @@ public class SessionListPanel extends JPanel {
         instrumentImageLabel.setHorizontalAlignment(JLabel.CENTER);
 
         JPanel imagePanel = new JPanel(new BorderLayout());
-        imagePanel.setBackground(new Color(245, 245, 245));
+        imagePanel.setBackground(new Color(255, 204, 0));
         imagePanel.setBorder(new EmptyBorder(20, 10, 20, 20));
         imagePanel.add(instrumentImageLabel, BorderLayout.NORTH);
 

@@ -52,7 +52,7 @@ public class AddSessionPanel extends JPanel {
     @SuppressWarnings("methodlength")
     private void setupLayout() {
         setLayout(new BorderLayout());
-        setBackground(new Color(245, 245, 245));
+        setBackground(new Color(255, 204, 0));
         setBorder(new EmptyBorder(30, 40, 30, 40));
 
         // title at the top
