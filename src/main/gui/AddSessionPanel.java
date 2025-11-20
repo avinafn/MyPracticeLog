@@ -10,6 +10,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.*;
 import java.awt.*;
 
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
+
+@ExcludeFromJacocoGeneratedReport
 public class AddSessionPanel extends JPanel {
     private JTextField dayField;
     private JTextField instrumentField;
@@ -23,46 +26,9 @@ public class AddSessionPanel extends JPanel {
     private CardLayout cardLayout;
     private JPanel cardPanel;
 
-    @SuppressWarnings("methodlength")
+    // EFFECTS: constructs the add session menu with all the place holders and buttons that allows the user
+    //          to enter their information
     public AddSessionPanel(PracticeLog log, SessionListPanel listPanel, CardLayout cardLayout, JPanel cardPanel) {
-
-        // dayField = new JTextField("day");
-        // instrumentField = new JTextField("instrument");
-        // piecesField = new JTextField("pieces");
-        // commentField = new JTextField("comment");
-        // durationField = new JTextField("duration (min)");
-        // categoryField = new JTextField("category");
-        // goalField = new JTextField("goal");
-
-        // add(new JLabel("Day:"));
-        // add(dayField);
-
-        // add(new JLabel("Instrument:"));
-        // add(instrumentField);
-
-        // add(new JLabel("Pieces:"));
-        // add(piecesField);
-
-        // add(new JLabel("Comment:"));
-        // add(commentField);
-
-        // add(new JLabel("Duration (min):"));
-        // add(durationField);
-
-        // add(new JLabel("Category:"));
-        // add(categoryField);
-
-        // add(new JLabel("Goal:"));
-        // add(goalField);
-
-        // JButton submit = new JButton("Submit");
-        // add(new JLabel());
-        // add(submit);
-
-        // setBackground(new Color(245, 245, 245));
-        // setOpaque(true);
-
-        // overall layout
 
         this.log = log;
         this.listPanel = listPanel;
@@ -77,8 +43,16 @@ public class AddSessionPanel extends JPanel {
         categoryField = new JTextField(15);
         goalField = new JTextField(15);
 
+        setupLayout();
+        submitButton();
+
+    }
+
+    // EFFECTS: sets up the frame and fields that need to be filled by the user
+    @SuppressWarnings("methodlength")
+    private void setupLayout() {
         setLayout(new BorderLayout());
-        setBackground(new Color(245, 245, 245)); // soft grey
+        setBackground(new Color(245, 245, 245));
         setBorder(new EmptyBorder(30, 40, 30, 40));
 
         // title at the top
@@ -112,57 +86,59 @@ public class AddSessionPanel extends JPanel {
         formPanel.add(goalField);
 
         add(formPanel, BorderLayout.CENTER);
+    }
 
-        // Submit button
+    // EFFECTS: sets up the submit button with an event handler
+    private void submitButton() {
         JButton submit = new JButton("Submit");
         submit.setPreferredSize(new Dimension(120, 40));
+
         JPanel buttonPanel = new JPanel();
         buttonPanel.setOpaque(false);
         buttonPanel.add(submit);
 
         add(buttonPanel, BorderLayout.SOUTH);
 
-        submit.addActionListener(e -> {
-            // Read values from the text fields
-            String day = dayField.getText().trim();
-            String instrument = instrumentField.getText().trim();
-            String pieces = piecesField.getText().trim();
-            String comment = commentField.getText().trim();
-            String category = categoryField.getText().trim();
-            String goal = goalField.getText().trim();
+        submit.addActionListener(e -> handleSubmit());
+    }
 
-            int duration;
-            try {
-                duration = Integer.parseInt(durationField.getText().trim());
-            } catch (NumberFormatException ex) {
-                
-                JOptionPane.showMessageDialog(this, "Duration must be a number (minutes).", "Invalid input",
-                        JOptionPane.ERROR_MESSAGE);
-                return; 
-            }
+    // REQUIRES: the submit button is clicked
+    // EFECTS: saves the info entered by the user 
+    private void handleSubmit() {
+        String day = dayField.getText().trim();
+        String instrument = instrumentField.getText().trim();
+        String pieces = piecesField.getText().trim();
+        String comment = commentField.getText().trim();
+        String category = categoryField.getText().trim();
+        String goal = goalField.getText().trim();
 
-            
-            PracticeSession session = new PracticeSession(day, instrument, pieces, duration, comment, category, goal);
+        int duration;
+        try {
+            duration = Integer.parseInt(durationField.getText().trim());
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Duration must be a number (minutes).", "Invalid input",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-            
-            log.addSession(session); 
+        PracticeSession session = new PracticeSession(day, instrument, pieces, duration, comment, category, goal);
 
-           
-            listPanel.refresh(); 
+        log.addSession(session);
+        listPanel.refresh();
 
-            // clear fields for the next entry
-            dayField.setText("");
-            instrumentField.setText("");
-            piecesField.setText("");
-            commentField.setText("");
-            durationField.setText("");
-            categoryField.setText("");
-            goalField.setText("");
+        clearFields();
+        cardLayout.show(cardPanel, "log");
+    }
 
-            // 6. back to log screen
-            cardLayout.show(cardPanel, "log");
-        });
-
+    // EFFECTS: clears out the fields filled before for new enteries
+    private void clearFields() {
+        dayField.setText("");
+        instrumentField.setText("");
+        piecesField.setText("");
+        commentField.setText("");
+        durationField.setText("");
+        categoryField.setText("");
+        goalField.setText("");
     }
 
 }

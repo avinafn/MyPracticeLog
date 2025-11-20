@@ -10,6 +10,12 @@ import javax.swing.JTextArea;
 import model.PracticeLog;
 import model.PracticeSession;
 
+
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
+
+
+// EFFECTS: cunstructs a new window to display the user's saved information
+@ExcludeFromJacocoGeneratedReport
 public class SessionListPanel extends JPanel {
     private PracticeLog log;
     private JTextArea area;

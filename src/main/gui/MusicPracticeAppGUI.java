@@ -1,6 +1,8 @@
 package gui;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 
@@ -10,21 +12,32 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import gui.SessionListPanel;
-import gui.AddSessionPanel;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 
 import model.PracticeLog;
-import model.PracticeSession;
+import persistence.JsonReader;
+import persistence.JsonWriter;
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 
+@ExcludeFromJacocoGeneratedReport
 public class MusicPracticeAppGUI extends JFrame {
     private CardLayout cardLayout;
     private JPanel cardPanel;
-    
 
     private SessionListPanel sessionListPanel;
     private AddSessionPanel addSessionPanel;
     private PracticeLog practiceLog;
 
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+
+    private static final String JSON_STORE = "./data/practicelog.json";
+
+
+    // EFFECTS: MusicPracticeAppGUI constructs the frame of the ui along with the buttons in the top bar to 
+    //          allow the user to add/view/load/save.
     @SuppressWarnings("methodlength")
     public MusicPracticeAppGUI() {
         // Frame setup
@@ -52,36 +65,75 @@ public class MusicPracticeAppGUI extends JFrame {
         topBar.add(loadButton);
         add(topBar, BorderLayout.NORTH);
         topBar.setBackground(new Color(230, 230, 230));
-        topBar.setBorder(new EmptyBorder(10, 20, 10, 20)); 
+        topBar.setBorder(new EmptyBorder(10, 20, 10, 20));
 
         // Card panel setup
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
         cardPanel.setBackground(new Color(245, 245, 245));
 
-
-
         sessionListPanel = new SessionListPanel(practiceLog);
         addSessionPanel = new AddSessionPanel(practiceLog, sessionListPanel, cardLayout, cardPanel);
 
-        cardPanel.add(addSessionPanel,  "add");
-        cardPanel.add(sessionListPanel,  "log");
+        cardPanel.add(addSessionPanel, "add");
+        cardPanel.add(sessionListPanel, "log");
 
         add(cardPanel, BorderLayout.CENTER);
 
         addButton.addActionListener(e -> cardLayout.show(cardPanel, "add"));
         viewButton.addActionListener(e -> cardLayout.show(cardPanel, "log"));
+        saveButton.addActionListener(e -> savePracticeLog());
+        loadButton.addActionListener(e -> loadPracticeLog());
 
-
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
 
         setVisible(true);
-    
+
     }
+
+    // EFFECTS: styles the buttons in the user interface
 
     private void styleButton(JButton b) {
         b.setPreferredSize(new Dimension(180, 60));
         b.setBackground(new Color(220, 220, 220));
         b.setFont(new Font("Arial", Font.BOLD, 16));
+    }
+
+    // EFFECTS: saves the information from the user 
+    private void savePracticeLog() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(practiceLog);
+            jsonWriter.close();
+            JOptionPane.showMessageDialog(this, "Practice log saved to " + JSON_STORE, "Successful",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(this, "Unable to save to file: " + JSON_STORE, "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    // EFFECTS: loads the user information
+    private void loadPracticeLog() {
+        try {
+            practiceLog = jsonReader.read();
+
+            sessionListPanel = new SessionListPanel(practiceLog);
+
+            cardPanel.removeAll();
+            cardPanel.add(addSessionPanel, "add");
+            cardPanel.add(sessionListPanel, "log");
+
+            sessionListPanel.refresh();
+            cardLayout.show(cardPanel, "log");
+
+            JOptionPane.showMessageDialog(this, "Practice log loaded from " + JSON_STORE, "Successful",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Unable to read from file: " + JSON_STORE, "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }
 
 }
