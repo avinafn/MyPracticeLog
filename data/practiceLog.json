@@ -1,9 +1,20 @@
-{"practiceSessions": [{
-    "pieces": "valse 16",
-    "duration": 30,
-    "goal": "n/a",
-    "instrument": "piano",
-    "comment": "n/a",
-    "category": "romantic",
-    "day": "Monday"
-}]}
+{"practiceSessions": [
+    {
+        "pieces": "valse",
+        "duration": 40,
+        "goal": "n/a",
+        "instrument": "piano",
+        "comment": "n/a",
+        "category": "romantic",
+        "day": "monday"
+    },
+    {
+        "pieces": "n/a",
+        "duration": 50,
+        "goal": "n/a",
+        "instrument": "guitar",
+        "comment": "n/a",
+        "category": "n/a",
+        "day": "Tuesday"
+    }
+]}

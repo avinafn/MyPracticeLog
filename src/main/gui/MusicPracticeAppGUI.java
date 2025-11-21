@@ -15,7 +15,6 @@ import java.awt.Font;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-
 import model.PracticeLog;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -35,9 +34,9 @@ public class MusicPracticeAppGUI extends JFrame {
 
     private static final String JSON_STORE = "./data/practicelog.json";
 
-
-    // EFFECTS: MusicPracticeAppGUI constructs the frame of the ui along with the buttons in the top bar to 
-    //          allow the user to add/view/load/save.
+    // EFFECTS: MusicPracticeAppGUI constructs the frame of the ui along with the
+    // buttons in the top bar to
+    // allow the user to add/view/load/save.
     @SuppressWarnings("methodlength")
     public MusicPracticeAppGUI() {
         // Frame setup
@@ -59,12 +58,15 @@ public class MusicPracticeAppGUI extends JFrame {
         styleButton(saveButton);
         JButton loadButton = new JButton("Load Sessions");
         styleButton(loadButton);
+
+
         topBar.add(addButton);
         topBar.add(viewButton);
         topBar.add(saveButton);
         topBar.add(loadButton);
+
         add(topBar, BorderLayout.NORTH);
-        topBar.setBackground(new Color(255, 128, 128));
+        topBar.setBackground(new Color(255, 192, 203));
         topBar.setBorder(new EmptyBorder(10, 20, 10, 20));
 
         // Card panel setup
@@ -85,6 +87,7 @@ public class MusicPracticeAppGUI extends JFrame {
         saveButton.addActionListener(e -> savePracticeLog());
         loadButton.addActionListener(e -> loadPracticeLog());
 
+
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
 
@@ -100,7 +103,7 @@ public class MusicPracticeAppGUI extends JFrame {
         b.setFont(new Font("Arial", Font.BOLD, 16));
     }
 
-    // EFFECTS: saves the information from the user 
+    // EFFECTS: saves the information from the user
     private void savePracticeLog() {
         try {
             jsonWriter.open();
@@ -114,22 +117,20 @@ public class MusicPracticeAppGUI extends JFrame {
         }
     }
 
-    // EFFECTS: loads the user information
     private void loadPracticeLog() {
         try {
-            practiceLog = jsonReader.read();
+            // read into a temporary log
+            PracticeLog loaded = jsonReader.read();
 
-            sessionListPanel = new SessionListPanel(practiceLog);
-
-            cardPanel.removeAll();
-            cardPanel.add(addSessionPanel, "add");
-            cardPanel.add(sessionListPanel, "log");
+            // Copy to the existing log object
+            practiceLog.setPracticeSession(loaded.getPracticeSession());
 
             sessionListPanel.refresh();
             cardLayout.show(cardPanel, "log");
 
             JOptionPane.showMessageDialog(this, "Practice log loaded from " + JSON_STORE, "Successful",
                     JOptionPane.INFORMATION_MESSAGE);
+
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Unable to read from file: " + JSON_STORE, "Error",
                     JOptionPane.ERROR_MESSAGE);
