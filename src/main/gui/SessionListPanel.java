@@ -126,4 +126,8 @@ public class SessionListPanel extends JPanel {
         instrumentImageLabel.setIcon(new ImageIcon(scaled));
     }
 
+    
+
+    
+
 }

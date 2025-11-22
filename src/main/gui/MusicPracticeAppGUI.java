@@ -59,7 +59,6 @@ public class MusicPracticeAppGUI extends JFrame {
         JButton loadButton = new JButton("Load Sessions");
         styleButton(loadButton);
 
-
         topBar.add(addButton);
         topBar.add(viewButton);
         topBar.add(saveButton);
@@ -136,5 +135,6 @@ public class MusicPracticeAppGUI extends JFrame {
                     JOptionPane.ERROR_MESSAGE);
         }
     }
+
 
 }

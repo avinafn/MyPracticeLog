@@ -124,6 +124,12 @@ public class PracticeLogTest {
         assertEquals(expected, actual);
         
     }
+
+    @Test
+    public void testGetSeesions() {
+        practicelogtest.addSession(session1);
+        assertEquals(List.of(session1), practicelogtest.getSessions());
+    }
     
 
 }
