@@ -32,6 +32,8 @@ public class MusicPracticeAppGUI extends JFrame {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
+
+
     private static final String JSON_STORE = "./data/practicelog.json";
 
     // EFFECTS: MusicPracticeAppGUI constructs the frame of the ui along with the
@@ -47,6 +49,7 @@ public class MusicPracticeAppGUI extends JFrame {
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
+
         JPanel topBar = new JPanel();
 
         // Buttons setup
@@ -86,13 +89,13 @@ public class MusicPracticeAppGUI extends JFrame {
         saveButton.addActionListener(e -> savePracticeLog());
         loadButton.addActionListener(e -> loadPracticeLog());
 
-
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
 
         setVisible(true);
 
     }
+
 
     // EFFECTS: styles the buttons in the user interface
 
@@ -135,6 +138,5 @@ public class MusicPracticeAppGUI extends JFrame {
                     JOptionPane.ERROR_MESSAGE);
         }
     }
-
 
 }
