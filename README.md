@@ -22,4 +22,10 @@
 - You can save the state of my application by clicking the "Save" button.
 - You can reload the state of my application by clicking the "load" button.
 
+### Phase 4: Task 2
+- Mon Nov 24 20:59:44 PST 2025
+- Session added to log
+- Mon Nov 24 20:59:44 PST 2025
+- Practice log loaded from file
+
 
