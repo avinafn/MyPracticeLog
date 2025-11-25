@@ -1,20 +1,9 @@
-{"practiceSessions": [
-    {
-        "pieces": "vlase 16",
-        "duration": 50,
-        "goal": "n/a",
-        "instrument": "Piano",
-        "comment": "n/a",
-        "category": "n/a",
-        "day": "Monday"
-    },
-    {
-        "pieces": "",
-        "duration": 30,
-        "goal": "",
-        "instrument": "violin",
-        "comment": "",
-        "category": "",
-        "day": ""
-    }
-]}
+{"practiceSessions": [{
+    "pieces": "",
+    "duration": 60,
+    "goal": "",
+    "instrument": "piano",
+    "comment": "",
+    "category": "",
+    "day": ""
+}]}

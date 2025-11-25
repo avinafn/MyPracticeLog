@@ -15,6 +15,8 @@ import java.awt.Font;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import model.Event;
+import model.EventLog;
 import model.PracticeLog;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -31,8 +33,6 @@ public class MusicPracticeAppGUI extends JFrame {
 
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
-
-
 
     private static final String JSON_STORE = "./data/practicelog.json";
 
@@ -92,10 +92,22 @@ public class MusicPracticeAppGUI extends JFrame {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
 
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                printEventLog();
+            }
+        });
+
         setVisible(true);
 
     }
 
+    private void printEventLog() {
+        for (Event event : EventLog.getInstance()) {
+            System.out.println(event.toString());
+        }
+    }
 
     // EFFECTS: styles the buttons in the user interface
 

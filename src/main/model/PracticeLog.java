@@ -33,6 +33,7 @@ public class PracticeLog implements Writable {
      */
     public void addSession(PracticeSession session) {
         practiceSession.add(session);
+        EventLog.getInstance().logEvent(new Event("Session added to log"));
     }
 
     /*
@@ -71,6 +72,8 @@ public class PracticeLog implements Writable {
 
     public void setPracticeSession(List<PracticeSession> practiceSession) {
         this.practiceSession = practiceSession;
+        EventLog.getInstance().logEvent(new Event("Practice log loaded from file"));
+        
     }
 
     // EFFECTS: Returns the pieces practice in the practice log

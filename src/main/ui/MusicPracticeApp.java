@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import model.Event;
+import model.EventLog;
 import model.PracticeLog;
 import model.PracticeSession;
 import model.User;
@@ -12,14 +15,11 @@ import persistence.JsonReader;
 import persistence.JsonWriter;
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 
-
-
 // A music application that would allow users to make sessions and enter the details of their practice to have 
 // a record of it.
 @ExcludeFromJacocoGeneratedReport
 public class MusicPracticeApp {
     private static final String JSON_STORE = "./data/practiceLog.json"; // TODO
-    
 
     private Scanner scanner;
     private String firstOption;
@@ -32,8 +32,6 @@ public class MusicPracticeApp {
     private JsonReader jsonReader;
     private User user;
 
-
-    
     // EFFECTS: creates an instance of the MusciPracticeApp console ui application
     public MusicPracticeApp() {
 
@@ -46,9 +44,7 @@ public class MusicPracticeApp {
             mainmenu();
             running = optionHandler();
         }
-       
-        
-        
+
     }
 
     // EFFECTS: Construsts the scanner and initializes the practiceLog
@@ -59,13 +55,12 @@ public class MusicPracticeApp {
         jsonReader = new JsonReader(JSON_STORE);
     }
 
-
     // EFFECTS: Prints welcome message
     private void printWelcomeMessage() {
         printDivider();
         System.out.println("Welcome to Music Logger!");
-        System.out.println("Please select from the following options:"); 
-        printDivider();      
+        System.out.println("Please select from the following options:");
+        printDivider();
     }
 
     // EFFECTS: Prints divider
@@ -79,8 +74,8 @@ public class MusicPracticeApp {
         firstOption = scanner.nextLine().toUpperCase();
     }
 
-
-    // EFFECTS: Prints out the six initiall options a user has when they open the application
+    // EFFECTS: Prints out the six initiall options a user has when they open the
+    // application
     public void displayMenu() {
         System.out.println("A: Add a new session");
         System.out.println("L: View user log");
@@ -98,11 +93,11 @@ public class MusicPracticeApp {
         if (firstOption.equals("A")) {
             optionA();
             printDivider();
-            
+
         } else if (firstOption.equals("L")) {
             optionL();
             printDivider();
-            
+
         } else if (firstOption.equals("T")) {
             optionT();
             printDivider();
@@ -127,13 +122,13 @@ public class MusicPracticeApp {
     // EFFECTS: saves the workroom to file
     private void savePracticeLog() {
         try {
-            JsonWriter writer = new JsonWriter(JSON_STORE); //TODO
+            JsonWriter writer = new JsonWriter(JSON_STORE); // TODO
             jsonWriter.open();
             jsonWriter.writeUser(user);
             jsonWriter.close();
-            System.out.println("Saved " + " to " + JSON_STORE); //TODO:JSON_STORE
+            System.out.println("Saved " + " to " + JSON_STORE); // TODO:JSON_STORE
         } catch (FileNotFoundException e) {
-            System.out.println("Unable to write to file: " + JSON_STORE); //TODO:JSON_STORE
+            System.out.println("Unable to write to file: " + JSON_STORE); // TODO:JSON_STORE
         }
     }
 
@@ -144,14 +139,14 @@ public class MusicPracticeApp {
             user = jsonReader.readUser();
             log = user.getLog();
             name = user.getName();
-            System.out.println("Loaded " +  user.getName() + " from " + JSON_STORE); // TODO:JSON_STORE
+            System.out.println("Loaded " + user.getName() + " from " + JSON_STORE); // TODO:JSON_STORE
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
-    
 
-    // EFFECTS: handles the program when option "A" is entered and lets the user make a new session
+    // EFFECTS: handles the program when option "A" is entered and lets the user
+    // make a new session
     public void optionA() {
         System.out.println("What is your name?");
         name = scanner.nextLine();
@@ -161,26 +156,25 @@ public class MusicPracticeApp {
         } else {
             user.setName(name);
         }
-        
+
         System.out.println("Hello " + name.toUpperCase() + " press M to Make a new practice session");
-        
 
         do {
             System.out.println("Enter 'M' to create a new session:");
             newSession = scanner.nextLine().toUpperCase();
 
             if (newSession.equalsIgnoreCase("M")) {
-                sessionEntries(); 
-                break; 
+                sessionEntries();
+                break;
             } else {
                 System.out.println("Invalid option. Try again.");
             }
-        } while (true);    
-         
+        } while (true);
+
     }
 
-    
-    // EFFECTS: handles the program when option "L" is entered and displays all the sessions to the user
+    // EFFECTS: handles the program when option "L" is entered and displays all the
+    // sessions to the user
     public PracticeLog optionL() {
         if (log.getPracticeSession().isEmpty()) {
             System.out.println("No practice sessions found!");
@@ -188,28 +182,27 @@ public class MusicPracticeApp {
             for (int i = 0; i < log.getPracticeSession().size(); i++) {
                 System.out.println("This is " + name.toUpperCase() + "'s practice session");
                 System.out.println(log.showPracticeSession(i));
-            } 
+            }
         }
         return log;
 
     }
-    
+
     // MODIFIES: this
-    // EFFECTS: handles the program when option "T" is entered and displays the total duration of practice
+    // EFFECTS: handles the program when option "T" is entered and displays the
+    // total duration of practice
 
     public int optionT() {
         if (log.getPracticeSession().isEmpty()) {
             System.out.println("You haven't practiced anything yet");
         } else {
             for (PracticeSession newUserSession : log.getPracticeSession()) {
-                practiceTime = log.totalPracticeTime();               
+                practiceTime = log.totalPracticeTime();
             }
             System.out.println("Total practice time: " + practiceTime + " minutes");
-        }        
+        }
         return practiceTime;
     }
-
-    
 
     // EFFECTS: Gets different entries from the user to make a practice session
     public void sessionEntries() {
@@ -226,39 +219,32 @@ public class MusicPracticeApp {
         System.out.println("Type down any commnets you have about your session");
         String commentEntered = scanner.nextLine();
         System.out.println("How long have you practiced?(in minutes)");
-        int durationEntered = durationMinutes();  
-            
+        int durationEntered = durationMinutes();
 
-        newUserSession = new PracticeSession(dateEntered, instrumentEntered, pieceEntered, 
-                durationEntered, commentEntered, categoryEntered, goalEntered);
+        newUserSession = new PracticeSession(dateEntered, instrumentEntered, pieceEntered, durationEntered,
+                commentEntered, categoryEntered, goalEntered);
+
+        log.addSession(newUserSession);
         
-        log.addSession(newUserSession);              
-        
+
     }
 
-    
-    // EFFECTS: Returns a statement of invalid input to the user until they inter a vlaid integer as the input
+    // EFFECTS: Returns a statement of invalid input to the user until they inter a
+    // vlaid integer as the input
     public int durationMinutes() {
         int durationEntered = 0;
         while (true) {
             if (scanner.hasNextInt()) {
                 durationEntered = scanner.nextInt();
-                scanner.nextLine(); 
-                break; 
+                scanner.nextLine();
+                break;
             } else {
                 System.out.println("Please enter a valid number (in minutes): ");
-                scanner.nextLine(); 
+                scanner.nextLine();
             }
         }
         return durationEntered;
-            
+
     }
 
-
-    
 }
-
-    
-
-
-
