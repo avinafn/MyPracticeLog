@@ -28,4 +28,7 @@
 - Mon Nov 24 20:59:44 PST 2025
 - Practice log loaded from file
 
+## Phase 4: Task 3
+- The design can be improved by strengthening UI - model separation and reducing the responsibilities of PracticeLog. Currently, the GUI panels directly reference the PracticeLog, which creates unnecessary coupling.Instead, the UI should interact with the model only through public methods so that all dependencies flow from UI to model, keeping the model independent. Also, PracticeLog is doing too much by storing sessions, logging events, and performing calculations, which violates the SRP. Moving summary or analytic logic (such as total practice time and session counts) into a PracticeStatistics class would make the model more cohesive and easier to maintain. 
+
 
