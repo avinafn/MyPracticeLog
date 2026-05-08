@@ -6,6 +6,8 @@ import org.json.JSONObject;
 
 import persistence.Writable;
 
+
+
 // A class representing a practice session having a date, instrument, pieces, duration, focusarea and comments
 public class PracticeSession implements Writable {
     private String day;

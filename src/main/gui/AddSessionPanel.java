@@ -7,14 +7,18 @@ import model.PracticeSession;
 
 import javax.swing.border.EmptyBorder;
 
+
 import javax.swing.*;
 import java.awt.*;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 
+import com.github.lgooddatepicker.components.DatePicker;
+import java.time.LocalDate;
+
 @ExcludeFromJacocoGeneratedReport
 public class AddSessionPanel extends JPanel {
-    private JTextField dayField;
+    private DatePicker dayField;
     private JTextField instrumentField;
     private JTextField piecesField;
     private JTextField commentField;
@@ -35,7 +39,7 @@ public class AddSessionPanel extends JPanel {
         this.cardLayout = cardLayout;
         this.cardPanel = cardPanel;
 
-        dayField = new JTextField(15);
+        dayField = new DatePicker();
         instrumentField = new JTextField(15);
         piecesField = new JTextField(15);
         commentField = new JTextField(15);
