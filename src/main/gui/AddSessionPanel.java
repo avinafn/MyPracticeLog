@@ -19,11 +19,11 @@ import java.time.LocalDate;
 @ExcludeFromJacocoGeneratedReport
 public class AddSessionPanel extends JPanel {
     private DatePicker dayField;
-    private JTextField instrumentField;
+    private javax.swing.JComboBox<String> instrumentField;
     private JTextField piecesField;
     private JTextField commentField;
     private JTextField durationField;
-    private JTextField categoryField;
+    private javax.swing.JComboBox<String> categoryField;
     private JTextField goalField;
     private PracticeLog log;
     private SessionListPanel listPanel;
@@ -40,11 +40,21 @@ public class AddSessionPanel extends JPanel {
         this.cardPanel = cardPanel;
 
         dayField = new DatePicker();
-        instrumentField = new JTextField(15);
+
+        String[] instruments = {"Piano", "Violin", "Guitar"};
+        instrumentField = new javax.swing.JComboBox<>(instruments);
+        this.add(new JLabel("Instruments: "));
+        this.add(instrumentField);
+
         piecesField = new JTextField(15);
         commentField = new JTextField(15);
         durationField = new JTextField(15);
-        categoryField = new JTextField(15);
+
+        String[] categories = {"Technique", "Repertoire", "Scales", "Performance", "Sight Reading"};
+        categoryField = new javax.swing.JComboBox<>(categories);
+        this.add(new JLabel("categories: "));
+        this.add(categoryField);
+
         goalField = new JTextField(15);
 
         setupLayout();
@@ -110,10 +120,10 @@ public class AddSessionPanel extends JPanel {
     // EFECTS: saves the info entered by the user 
     private void handleSubmit() {
         String day = dayField.getText().trim();
-        String instrument = instrumentField.getText().trim();
+        String instrument = instrumentField.getSelectedItem().toString();
         String pieces = piecesField.getText().trim();
         String comment = commentField.getText().trim();
-        String category = categoryField.getText().trim();
+        String category = categoryField.getSelectedItem().toString();
         String goal = goalField.getText().trim();
 
         int duration;
@@ -137,11 +147,11 @@ public class AddSessionPanel extends JPanel {
     // EFFECTS: clears out the fields filled before for new enteries
     private void clearFields() {
         dayField.setText("");
-        instrumentField.setText("");
+        instrumentField.setSelectedIndex(0);
         piecesField.setText("");
         commentField.setText("");
         durationField.setText("");
-        categoryField.setText("");
+        categoryField.setSelectedIndex(0);
         goalField.setText("");
     }
 
