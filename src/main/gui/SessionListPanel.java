@@ -22,7 +22,8 @@ import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 @ExcludeFromJacocoGeneratedReport
 public class SessionListPanel extends JPanel {
     private PracticeLog log;
-    private JTextArea area;
+    // private JTextArea area;
+    private JPanel container;
     private JLabel instrumentImageLabel;
     private JLabel totalTimeLabel;
     private JLabel sessionCountLabel;
@@ -50,10 +51,16 @@ public class SessionListPanel extends JPanel {
 
         add(statsPanel, BorderLayout.NORTH);
 
-        area = new JTextArea();
-        area.setEditable(false);
 
-        add(new JScrollPane(area), BorderLayout.CENTER);
+        //area = new JTextArea();
+        //area.setEditable(false);
+        //add(new JScrollPane(area), BorderLayout.CENTER);
+
+        container = new JPanel();
+        container.setLayout(new javax.swing.BoxLayout(container, javax.swing.BoxLayout.Y_AXIS));
+        container.setBackground(new Color(255, 204, 153));
+
+        add(new JScrollPane(container), BorderLayout.CENTER);
 
         instrumentImageLabel = new JLabel();
         instrumentImageLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -69,22 +76,71 @@ public class SessionListPanel extends JPanel {
 
     // EFFECTS: updates the information added by the user and
     // updates the instrument image
-    public void refresh() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < log.getSessions().size(); i++) {
-            sb.append(log.showPracticeSession(i)).append("\n");
-        }
-        area.setText(sb.toString());
+    // public void refresh() {
+    //     StringBuilder sb = new StringBuilder();
+    //     for (int i = 0; i < log.getSessions().size(); i++) {
+    //         sb.append(log.showPracticeSession(i)).append("\n");
+    //     }
+    //     container.setText(sb.toString());
 
-        if (!log.getSessions().isEmpty()) {
+    //     if (!log.getSessions().isEmpty()) {
+    //         PracticeSession last = log.getSessions().get(log.getSessions().size() - 1);
+    //         updateInstrumentImage(last.getInstrument());
+    //     } else {
+    //         instrumentImageLabel.setIcon(null);
+    //     }
+
+    //     sessionCountLabel.setText("Sessions: " + log.sessionCount());
+    //     totalTimeLabel.setText("Total time: " + log.totalPracticeTime());
+    // }
+
+    public void refresh() {
+        container.removeAll();
+
+        // loop thorugh every session one by one
+        for (int i = 0; i < log.getSessions().size(); i++) {
+            PracticeSession currentSession = log.getSessions().get(i);
+            
+            JPanel rowPanel = new JPanel(new BorderLayout());
+            rowPanel.setOpaque(false);
+            rowPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+
+            JTextArea sessionText = new JTextArea(log.showPracticeSession(i));
+            sessionText.setEditable(false);
+            sessionText.setOpaque(false);
+
+            //button for a specific row
+            javax.swing.JButton deleteBtn = new javax.swing.JButton("Delete");
+            deleteBtn.setBackground(new Color(255,100, 100));
+            deleteBtn.addActionListener(e -> {log.removeSession(currentSession);
+                refresh();
+            });
+
+            rowPanel.add(sessionText, BorderLayout.CENTER);
+            rowPanel.add(deleteBtn, BorderLayout.EAST);
+
+            container.add(rowPanel);
+
+        }    
+
+            //update the image
+            if (!log.getSessions().isEmpty()) {
             PracticeSession last = log.getSessions().get(log.getSessions().size() - 1);
             updateInstrumentImage(last.getInstrument());
-        } else {
-            instrumentImageLabel.setIcon(null);
-        }
+            } else {
+                instrumentImageLabel.setIcon(null);
+            }
 
-        sessionCountLabel.setText("Sessions: " + log.sessionCount());
-        totalTimeLabel.setText("Total time: " + log.totalPracticeTime());
+            // Update the stats
+            sessionCountLabel.setText("Sessions: " + log.sessionCount());
+            totalTimeLabel.setText("Total time: " + log.totalPracticeTime());
+
+           
+            container.revalidate();
+            container.repaint();
+
+
+        
     }
 
     // EFFECTS: returns the instrument image based on user's instrument entery or no
@@ -125,6 +181,8 @@ public class SessionListPanel extends JPanel {
         Image scaled = icon.getImage().getScaledInstance(180, 180, Image.SCALE_SMOOTH);
         instrumentImageLabel.setIcon(new ImageIcon(scaled));
     }
+
+
 
     
 

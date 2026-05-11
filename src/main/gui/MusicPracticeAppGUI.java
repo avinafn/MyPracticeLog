@@ -85,7 +85,11 @@ public class MusicPracticeAppGUI extends JFrame {
         add(cardPanel, BorderLayout.CENTER);
 
         addButton.addActionListener(e -> cardLayout.show(cardPanel, "add"));
-        viewButton.addActionListener(e -> cardLayout.show(cardPanel, "log"));
+        //viewButton.addActionListener(e -> cardLayout.show(cardPanel, "log"));
+        viewButton.addActionListener(e -> {
+            sessionListPanel.refresh();
+            cardLayout.show(cardPanel, "log");
+        });
         saveButton.addActionListener(e -> savePracticeLog());
         loadButton.addActionListener(e -> loadPracticeLog());
 

@@ -33,7 +33,12 @@ public class PracticeLog implements Writable {
      */
     public void addSession(PracticeSession session) {
         practiceSession.add(session);
-        EventLog.getInstance().logEvent(new Event("Session added to log"));
+        EventLog.getInstance().logEvent(new Event("Session added to the log"));
+    }
+
+    public void removeSession(PracticeSession session) {
+        this.practiceSession.remove(session);
+        EventLog.getInstance().logEvent(new Event("session removed from the log"));
     }
 
     /*
